@@ -1,0 +1,39 @@
+Web Socket Integration (HighPerApp\HighPer\WebSockets\Tests\Integration\WebSocketIntegration)
+ [x] WebSocket server integrates with IndexedBroadcaster correctly
+ [x] Multiple connections can send and receive messages simultaneously
+ [ ] Broadcasting works correctly with multiple channels
+ [x] WebSocket server handles connection lifecycle correctly
+ [x] Middleware chain executes in correct order during message processing
+ [x] Broadcasting performance is acceptable for high subscriber count
+ [x] Connection attributes persist correctly across operations
+ [x] Message validation works correctly with custom validators
+ [x] Server statistics are accurately maintained across operations
+
+Web Socket Server (HighPerApp\HighPer\WebSockets\Tests\Unit\WebSocketServer)
+ [x] WebSocket server can be instantiated with valid configuration
+ [x] WebSocket server throws exception with invalid configuration with data set "invalid host"
+ [x] WebSocket server throws exception with invalid configuration with data set "invalid port range"
+ [x] WebSocket server throws exception with invalid configuration with data set "port too high"
+ [x] WebSocket server throws exception with invalid configuration with data set "invalid max connections"
+ [x] WebSocket server can register event handlers
+ [x] WebSocket server tracks connections correctly
+ [x] WebSocket server enforces connection limits
+ [x] WebSocket server can broadcast messages to all connections
+ [ ] WebSocket server can broadcast to specific connections
+ [x] WebSocket server handles message validation correctly
+ [x] WebSocket server supports middleware correctly
+ [x] WebSocket server handles middleware exceptions correctly
+ [x] WebSocket server provides server statistics
+ [ ] WebSocket server handles connection timeouts correctly
+ [x] WebSocket server supports frame compression
+ [x] WebSocket server handles different frame types correctly with data set "text frame"
+ [x] WebSocket server handles different frame types correctly with data set "binary frame"
+ [x] WebSocket server handles different frame types correctly with data set "close frame"
+ [x] WebSocket server handles different frame types correctly with data set "ping frame"
+ [x] WebSocket server handles different frame types correctly with data set "pong frame"
+ [x] WebSocket server handles SSL configuration correctly
+ [x] WebSocket server performance is acceptable
+ [x] WebSocket server memory usage stays reasonable
+ [x] WebSocket server handles concurrent operations safely
+ [x] WebSocket server validates frame structure correctly
+

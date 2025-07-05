@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         requireCoverageMetadata="false"
+         beStrictAboutCoverageMetadata="false"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true">
+    
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+        
+        <testsuite name="Performance">
+            <directory>tests/Performance</directory>
+        </testsuite>
+        
+        <testsuite name="Concurrency">
+            <directory>tests/Concurrency</directory>
+        </testsuite>
+        
+        <testsuite name="All">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+        <exclude>
+            <directory>src/Exceptions</directory>
+        </exclude>
+    </source>
+
+    <coverage cacheDirectory=".phpunit.cache/coverage">
+        <report>
+            <html outputDirectory="coverage/html"/>
+            <clover outputFile="coverage/clover.xml"/>
+            <text outputFile="coverage/text.txt"/>
+        </report>
+    </coverage>
+
+    <logging>
+        <junit outputFile="logs/junit.xml"/>
+        <testdoxHtml outputFile="logs/testdox.html"/>
+        <testdoxText outputFile="logs/testdox.txt"/>
+    </logging>
+
+    <groups>
+        <include>
+            <group>unit</group>
+            <group>integration</group>
+        </include>
+        <exclude>
+            <group>performance</group>
+            <group>concurrency</group>
+        </exclude>
+    </groups>
+
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="WEBSOCKET_HOST" value="127.0.0.1"/>
+        <env name="WEBSOCKET_PORT" value="8080"/>
+        <env name="WEBSOCKET_MAX_CONNECTIONS" value="100"/>
+        <ini name="memory_limit" value="512M"/>
+    </php>
+</phpunit>

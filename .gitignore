@@ -1,0 +1,40 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Cache
+/cache/
+/tmp/
+
+# PHPStan
+.phpstan.cache
+/phpstan.cache
+/phpstan/
+
+# PHP-CS-Fixer
+.php-cs-fixer.cache
+/.php-cs-fixer.cache
+
+# Environment
+.env
+
+# Testing
+/coverage/
+.phpunit.result.cache
+
+# Windows Zone.Identifier files
+*:Zone.Identifier
+*.Zone.Identifier

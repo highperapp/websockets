@@ -1,0 +1,55 @@
+{
+    "name": "highperapp/websockets",
+    "description": "High-performance WebSocket server and streaming for HighPer PHP framework",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "websocket",
+        "streaming",
+        "real-time",
+        "amphp",
+        "async",
+        "high-performance"
+    ],
+    "authors": [
+        {
+            "name": "Raghuveer",
+            "email": "raghuveer.dendukuri@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.3|^8.4",
+        "amphp/websocket-server": "^4.0",
+        "amphp/http-server": "^3.0",
+        "amphp/amp": "^3.0",
+        "psr/log": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.50"
+    },
+    "suggest": {
+        "highperapp/zero-downtime": "For zero-downtime deployments with WebSocket connection migration"
+    },
+    "autoload": {
+        "psr-4": {
+            "HighPerApp\\HighPer\\WebSockets\\": "src/",
+            "HighPerApp\\HighPer\\Contracts\\": "src/Contracts/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HighPerApp\\HighPer\\WebSockets\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "phpstan": "phpstan analyse src --level=4",
+        "cs-fix": "php-cs-fixer fix --allow-risky=yes",
+        "cs-check": "php-cs-fixer fix --dry-run --diff"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

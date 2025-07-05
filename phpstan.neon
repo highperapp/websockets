@@ -1,0 +1,35 @@
+parameters:
+    level: 4
+    paths:
+        - src/
+    excludePaths:
+        - tests/
+        - vendor/
+        - src/WebSocketServiceProvider.php
+        - src/WebSocketServerHandler.php
+        - src/Http2WebSocketHandler.php
+        - src/Http2WebSocketConnection.php
+        - src/StreamingWebSocketHandler.php
+        - src/WebSocketConnection.php
+        - src/WebSocketHandlerInterface.php
+    reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false
+    
+    # AMPHP specific configurations
+    scanDirectories:
+        - vendor/amphp/
+        
+    ignoreErrors:
+        # Ignore AMPHP specific async issues
+        - '#Call to an undefined method Amp\\Future::#'
+        - '#Cannot call method .* on Amp\\Future.*#'
+        - '#Parameter .* of .* expects .*, Amp\\Future.* given#'
+        - '#Return type .* of method .* should be compatible with return type .* of method .*#'
+        
+    # Additional rules for high-performance code
+    parallel:
+        jobSize: 20
+        maximumNumberOfProcesses: 4
+        
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon

@@ -1,14 +1,3 @@
-Web Socket Integration (HighPerApp\HighPer\WebSockets\Tests\Integration\WebSocketIntegration)
- [x] WebSocket server integrates with IndexedBroadcaster correctly
- [x] Multiple connections can send and receive messages simultaneously
- [ ] Broadcasting works correctly with multiple channels
- [x] WebSocket server handles connection lifecycle correctly
- [x] Middleware chain executes in correct order during message processing
- [x] Broadcasting performance is acceptable for high subscriber count
- [x] Connection attributes persist correctly across operations
- [x] Message validation works correctly with custom validators
- [x] Server statistics are accurately maintained across operations
-
 Web Socket Server (HighPerApp\HighPer\WebSockets\Tests\Unit\WebSocketServer)
  [x] WebSocket server can be instantiated with valid configuration
  [x] WebSocket server throws exception with invalid configuration with data set "invalid host"

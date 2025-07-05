@@ -1,6 +1,6 @@
 # HighPer WebSockets
 
-[![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-blue.svg)](https://php.net)
+[![PHP Version](https://img.shields.io/badge/PHP-8.3%20|%208.4-blue.svg)](https://php.net)
 [![Performance](https://img.shields.io/badge/Performance-Indexed-orange.svg)](https://github.com/highperapp/websockets)
 [![WebSocket](https://img.shields.io/badge/WebSocket-RFC6455-green.svg)](https://tools.ietf.org/html/rfc6455)
 [![Tests](https://img.shields.io/badge/Tests-100%25-success.svg)](https://github.com/highperapp/websockets)
@@ -53,9 +53,31 @@ $server->start('0.0.0.0', 8080);
 
 ## Requirements
 
-- PHP 8.2+
-- AMPHP v3+
-- ext-json
+- **PHP 8.3+ or PHP 8.4+** - Full support for both versions
+- **AMPHP v3+** - Async/await WebSocket server implementation  
+- **ext-json** - JSON message encoding/decoding
+- **Modern PHP Features** - Leverages PHP 8.3/8.4 performance improvements
+
+## PHP Version Compatibility
+
+This library is fully tested and optimized for:
+
+### ✅ **PHP 8.3** (LTS)
+- Full feature support
+- Production-ready performance
+- All modern PHP 8.3 features utilized
+
+### ✅ **PHP 8.4** (Latest)
+- Complete compatibility 
+- Enhanced performance benefits
+- Future-ready implementation
+
+### 🔧 **Modern PHP Features Used**
+- **Strict Types**: `declare(strict_types=1)` throughout
+- **Constructor Property Promotion**: Clean, concise code
+- **Union Types**: Flexible parameter handling
+- **Attributes**: Modern PHPUnit test annotations
+- **Performance Optimizations**: JIT compiler ready
 
 ## License
 

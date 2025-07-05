@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b6174e1dae5ff6dff59af46b94dee8b",
+    "content-hash": "94b815d3126c8bdaaebf0c193c3fadd8",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2228,16 +2228,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.13.2",
+            "version": "1.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "d25e62e636b0a9b01e3bdebb7823b474876dd829"
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/d25e62e636b0a9b01e3bdebb7823b474876dd829",
-                "reference": "d25e62e636b0a9b01e3bdebb7823b474876dd829",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/faed855a7b5f4d4637717c2b3863e277116beb36",
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36",
                 "shasum": ""
             },
             "require": {
@@ -2276,7 +2276,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.2"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.3"
             },
             "funding": [
                 {
@@ -2284,7 +2284,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-07-04T14:07:32+00:00"
+            "time": "2025-07-05T12:25:42+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -5834,7 +5834,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3|^8.4"
+        "php": "^8.3|^8.4",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

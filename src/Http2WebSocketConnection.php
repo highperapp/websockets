@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HighPerApp\HighPer\WebSockets;
 
 use Amp\Http\Server\Request;
-use Amp\WebSocket\WebSocketException;
+use Amp\Websocket\WebsocketException;
 use Psr\Log\LoggerInterface;
 
 /**

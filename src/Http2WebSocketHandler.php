@@ -7,7 +7,7 @@ namespace HighPerApp\HighPer\WebSockets;
 use Amp\Http\HttpStatus;
 use Amp\Http\Server\Request;
 use Amp\Http\Server\Response;
-use Amp\WebSocket\WebSocketException;
+use Amp\Websocket\WebsocketException;
 use Psr\Log\LoggerInterface;
 
 /**

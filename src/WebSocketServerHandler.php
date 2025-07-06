@@ -8,9 +8,11 @@ use Amp\Http\Server\DefaultErrorHandler;
 use Amp\Http\Server\RequestHandler\ClosureRequestHandler;
 use Amp\Http\Server\SocketHttpServer;
 use Amp\Socket\InternetAddress;
-use Amp\WebSocket\Server\Websocket;
-use Amp\WebSocket\Server\WebSocketGateway;
-use Amp\WebSocket\Server\WebSocketServerFactory;
+use Amp\Websocket\Server\Websocket;
+use Amp\Websocket\Server\WebsocketGateway;
+use Amp\Websocket\Server\WebsocketClientGateway;
+use Amp\Websocket\Server\Rfc6455Acceptor;
+use Amp\Http\Server\Middleware\ForwardedHeaderType;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -32,7 +34,7 @@ class WebSocketServerHandler
 
     protected int $port;
 
-    protected WebSocketGateway $gateway;
+    protected WebsocketGateway $gateway;
 
     public function __construct(ContainerInterface $container, string $host, int $port)
     {
@@ -73,6 +75,8 @@ class WebSocketServerHandler
             case 'behind-proxy':
                 $this->server = SocketHttpServer::createForBehindProxy(
                     $this->logger,
+                    ForwardedHeaderType::Forwarded,
+                    ['127.0.0.1'], // Default trusted proxies - should be configurable
                     $enableCompression,
                 );
                 $this->logger->info('Created WebSocket server for behind-proxy deployment');
@@ -92,22 +96,20 @@ class WebSocketServerHandler
         // Expose the server address
         $this->server->expose(new InternetAddress($this->host, $this->port));
 
-        // Create WebSocket gateway with configuration
-        $this->gateway = new WebSocketServerFactory(
-            heartbeatPeriod: $heartbeatPeriod,
-            maxFrameSize: $maxFrameSize,
-            compression: $enableCompression,
-        );
+        // Create WebSocket gateway
+        $this->gateway = new WebsocketClientGateway();
 
         // Create WebSocket handler
-        $wsHandler = $this->container->has(WebSocketHandler::class)
-            ? $this->container->get(WebSocketHandler::class)
-            : new WebSocketHandler($this->logger);
+        $wsHandler = $this->container->has(StreamingWebSocketHandler::class)
+            ? $this->container->get(StreamingWebSocketHandler::class)
+            : new StreamingWebSocketHandler($this->logger);
 
         // Create WebSocket endpoint
         $websocket = new Websocket(
-            $this->gateway,
-            [$wsHandler, 'handleConnection'],
+            $this->server,
+            $this->logger,
+            new Rfc6455Acceptor(),
+            $wsHandler,
         );
 
         // Create request handler that serves WebSocket upgrades

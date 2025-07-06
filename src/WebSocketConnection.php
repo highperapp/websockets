@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace HighPerApp\HighPer\WebSockets;
 
 use Amp\Cancellation;
-use Amp\Websocket\Client;
-use Amp\Websocket\Message;
+use Amp\Websocket\WebsocketClient;
+use Amp\Websocket\WebsocketMessage;
 
 class WebSocketConnection
 {
@@ -18,9 +18,9 @@ class WebSocketConnection
     /**
      * Create a new WebSocket connection.
      *
-     * @param Client $client
+     * @param WebsocketClient $client
      */
-    public function __construct(protected Client $client)
+    public function __construct(protected WebsocketClient $client)
     {
     }
 
@@ -49,9 +49,9 @@ class WebSocketConnection
      *
      * @param Cancellation|null $cancellation
      *
-     * @return Message|null
+     * @return WebsocketMessage|null
      */
-    public function receive(?Cancellation $cancellation = null): ?Message
+    public function receive(?Cancellation $cancellation = null): ?WebsocketMessage
     {
         return $this->client->receive($cancellation);
     }
@@ -144,9 +144,9 @@ class WebSocketConnection
     /**
      * Get the underlying client.
      *
-     * @return Client
+     * @return WebsocketClient
      */
-    public function getClient(): Client
+    public function getClient(): WebsocketClient
     {
         return $this->client;
     }

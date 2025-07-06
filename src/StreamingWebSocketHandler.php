@@ -7,9 +7,11 @@ namespace HighPerApp\HighPer\WebSockets;
 use Amp\Future;
 use Amp\Pipeline\Pipeline;
 use Amp\Pipeline\Queue;
-use Amp\Websocket\WebsocketConnection;
 use Amp\Websocket\WebsocketMessage;
 use Psr\Log\LoggerInterface;
+
+use function Amp\async;
+use function Amp\Future\awaitAll;
 
 /**
  * Streaming WebSocket Handler.
@@ -53,9 +55,9 @@ class StreamingWebSocketHandler
     /**
      * Handle new WebSocket connection.
      */
-    public function handleConnection(WebsocketConnection $connection): Future
+    public function handleConnection(WebSocketConnection $connection): Future
     {
-        return Future::async(function () use ($connection): void {
+        return async(function () use ($connection): void {
             $connectionId = $this->generateConnectionId();
 
             $this->connections[$connectionId] = [
@@ -95,7 +97,7 @@ class StreamingWebSocketHandler
      */
     public function createStream(string $connectionId, string $streamId, callable $dataSource, array $options = []): Future
     {
-        return Future::async(function () use ($connectionId, $streamId, $dataSource, $options): void {
+        return async(function () use ($connectionId, $streamId, $dataSource, $options): void {
             if (!isset($this->connections[$connectionId])) {
                 throw new \RuntimeException("Connection not found: {$connectionId}");
             }
@@ -157,7 +159,7 @@ class StreamingWebSocketHandler
      */
     public function broadcast(array $connectionIds, $data, array $options = []): Future
     {
-        return Future::async(function () use ($connectionIds, $data, $options) {
+        return async(function () use ($connectionIds, $data, $options) {
             $enableCompression = $options['compression'] ?? $this->config['enable_compression'];
             $futures = [];
 
@@ -167,7 +169,7 @@ class StreamingWebSocketHandler
                 }
             }
 
-            $results = Future::settle($futures);
+            [$errors, $results] = awaitAll($futures);
 
             $successCount = 0;
             $errorCount = 0;
@@ -209,7 +211,7 @@ class StreamingWebSocketHandler
      */
     public function sendData(string $connectionId, $data, bool $compress = false): Future
     {
-        return Future::async(function () use ($connectionId, $data, $compress) {
+        return async(function () use ($connectionId, $data, $compress) {
             if (!isset($this->connections[$connectionId])) {
                 throw new \RuntimeException("Connection not found: {$connectionId}");
             }
@@ -395,7 +397,7 @@ class StreamingWebSocketHandler
      */
     protected function startHeartbeat(string $connectionId): Future
     {
-        return Future::async(function () use ($connectionId): void {
+        return async(function () use ($connectionId): void {
             $interval = $this->config['heartbeat_interval'];
 
             while (isset($this->connections[$connectionId])) {
@@ -502,7 +504,7 @@ class WebSocketPipeline
      */
     public function process($data): Future
     {
-        return Future::async(function () use ($data) {
+        return async(function () use ($data) {
             $processedData = $data;
 
             foreach ($this->processors as $processor) {

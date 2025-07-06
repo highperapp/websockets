@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HighPerApp\HighPer\WebSockets;
 
-use Amp\Websocket\Message;
+use Amp\Websocket\WebsocketMessage;
 
 interface WebSocketHandlerInterface
 {
@@ -19,9 +19,9 @@ interface WebSocketHandlerInterface
      * Handle a WebSocket message.
      *
      * @param WebSocketConnection $connection
-     * @param Message             $message
+     * @param WebsocketMessage     $message
      */
-    public function onMessage(WebSocketConnection $connection, Message $message): void;
+    public function onMessage(WebSocketConnection $connection, WebsocketMessage $message): void;
 
     /**
      * Handle a WebSocket disconnection.

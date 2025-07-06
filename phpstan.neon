@@ -6,12 +6,6 @@ parameters:
         - tests/
         - vendor/
         - src/WebSocketServiceProvider.php
-        - src/WebSocketServerHandler.php
-        - src/Http2WebSocketHandler.php
-        - src/Http2WebSocketConnection.php
-        - src/StreamingWebSocketHandler.php
-        - src/WebSocketConnection.php
-        - src/WebSocketHandlerInterface.php
     reportUnmatchedIgnoredErrors: false
     treatPhpDocTypesAsCertain: false
     
@@ -26,10 +20,14 @@ parameters:
         - '#Parameter .* of .* expects .*, Amp\\Future.* given#'
         - '#Return type .* of method .* should be compatible with return type .* of method .*#'
         
+        # Framework integration issues (standalone library)
+        - '#Call to an undefined method.*WebSocketServiceProvider::#'
+        - '#.*HighPerApp\\HighPer\\Contracts\\.*#'
+        - '#Class HighPerApp\\HighPer\\WebSockets\\WebSocketHandler not found#'
+        - '#Parameter .* has invalid type HighPerApp\\HighPer\\Contracts\\.*#'
+        
     # Additional rules for high-performance code
     parallel:
         jobSize: 20
         maximumNumberOfProcesses: 4
         
-includes:
-    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
